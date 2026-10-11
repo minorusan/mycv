@@ -612,6 +612,16 @@ a:hover { text-decoration: underline; }
   .lb-step { font-size: 30px; padding: 6px; }
   .toolbar-links { display: none; }
   .statusbar .hint { display: none; }
+
+  .identity { padding: 14px 14px 12px; }
+  .identity .role { letter-spacing: 0.06em; }
+
+  .row, .log-head { grid-template-columns: var(--graph-w, 90px) minmax(0, 1fr); }
+  .row .date, .log-head span:last-child { display: none; }
+  .row { padding-right: 10px; }
+  .row .subject { gap: 6px; }
+  .ref-chip { font-size: 9px; padding: 1px 4px; }
+  .row .subject .text { font-size: 13px; }
 }
 
 /* ---------- printable CV ---------- */
@@ -742,4 +752,20 @@ body.intro-on .section.is-spot {
   background: var(--panel);
   border-radius: 6px;
   box-shadow: 0 0 0 1px var(--accent), 0 0 26px rgba(53, 192, 138, 0.22);
+}
+
+@media (max-width: 860px) {
+  .intro { place-items: end center; padding: 16px 12px 18px; }
+  .intro-panel { width: 100%; max-width: 460px; padding: 20px 18px 18px; }
+  .intro-panel p { font-size: 13.5px; }
+  .intro-ok { width: 100%; padding: 11px 0; font-size: 13px; }
+}
+
+/* landscape phones: claw back enough height for the employments list */
+@media (max-height: 520px) and (max-width: 1100px) {
+  .identity { padding: 10px 14px 8px; }
+  .identity img { width: 44px; height: 44px; }
+  .identity dl { display: none; }
+  .intro { padding: 10px 12px 12px; }
+  .intro-panel p { margin-bottom: 8px; }
 }
