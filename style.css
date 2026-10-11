@@ -613,3 +613,133 @@ a:hover { text-decoration: underline; }
   .toolbar-links { display: none; }
   .statusbar .hint { display: none; }
 }
+
+/* ---------- printable CV ---------- */
+
+.pdf-btn {
+  font: 500 11px/1 var(--mono);
+  letter-spacing: 0.06em;
+  color: var(--subtle);
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 5px 10px;
+  margin-left: 14px;
+  cursor: pointer;
+}
+.pdf-btn:hover { color: var(--accent-bright); border-color: var(--accent); }
+
+#resume { display: none; }
+
+@media print {
+  @page { size: A4; margin: 14mm 15mm; }
+
+  #app, .detail, .lightbox, .rewind { display: none !important; }
+
+  html, body { background: #fff; }
+
+  #resume {
+    display: block;
+    max-width: none;
+    color: #000;
+    background: #fff;
+    font-family: Inter, Arial, Helvetica, sans-serif;
+    font-size: 10pt;
+    line-height: 1.42;
+    letter-spacing: normal;
+    word-spacing: normal;
+  }
+
+  #resume * { letter-spacing: normal !important; word-spacing: normal !important; }
+
+  #resume h1 { font-size: 20pt; font-weight: 600; margin: 0; }
+  #resume .cv-title { font-size: 11pt; margin: 2pt 0 0; }
+  #resume .cv-site { font-size: 10pt; margin: 6pt 0 0; }
+  #resume .cv-contact { font-size: 9.5pt; margin: 3pt 0 0; }
+
+  #resume h2 {
+    font-size: 11pt;
+    font-weight: 600;
+    margin: 14pt 0 5pt;
+    padding-bottom: 2pt;
+    border-bottom: 0.6pt solid #000;
+    break-after: avoid;
+  }
+
+  #resume .cv-job { margin: 0 0 9pt; break-inside: avoid; }
+  #resume h3 { font-size: 10.5pt; font-weight: 600; margin: 0; }
+  #resume .cv-meta { font-size: 9.5pt; margin: 1pt 0 3pt; }
+  #resume .cv-stack { font-size: 9pt; margin: 3pt 0 0; }
+  #resume .cv-skills { margin: 0 0 3pt; }
+
+  #resume p { margin: 0 0 4pt; orphans: 2; widows: 2; }
+  #resume ul { margin: 0; padding-left: 14pt; }
+  #resume li { margin: 0 0 2.5pt; orphans: 2; widows: 2; }
+
+  #resume a { color: #000; text-decoration: none; }
+}
+
+/* ---------- attention pulse ---------- */
+
+@keyframes pulse-ring {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(53, 192, 138, 0); border-color: var(--border); }
+  50% { box-shadow: 0 0 11px 1px rgba(53, 192, 138, 0.45); border-color: var(--accent); }
+}
+@keyframes pulse-ink {
+  0%, 100% { color: var(--faint); text-shadow: none; }
+  50% { color: var(--accent-bright); text-shadow: 0 0 9px rgba(123, 233, 180, 0.55); }
+}
+
+.pdf-btn { animation: pulse-ring 2.6s ease-in-out infinite; }
+.section > h2.is-new { animation: pulse-ink 2.6s ease-in-out infinite; }
+
+/* ---------- intro overlay ---------- */
+
+.intro {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: rgba(4, 8, 6, 0.76);
+}
+.intro.is-gone { display: none; }
+
+.intro-panel {
+  max-width: 440px;
+  padding: 26px 26px 22px;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.55);
+}
+.intro-panel p {
+  margin: 0 0 12px;
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--text);
+}
+.intro-panel p + p { color: var(--subtle); }
+
+.intro-ok {
+  margin-top: 6px;
+  padding: 7px 22px;
+  font: 500 12px/1 var(--mono);
+  letter-spacing: 0.08em;
+  color: var(--bg);
+  background: var(--accent);
+  border: 0;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.intro-ok:hover { background: var(--accent-bright); }
+
+body.intro-on .section.is-spot,
+body.intro-on .pdf-btn { position: relative; z-index: 201; }
+
+body.intro-on .section.is-spot {
+  background: var(--panel);
+  border-radius: 6px;
+  box-shadow: 0 0 0 1px var(--accent), 0 0 26px rgba(53, 192, 138, 0.22);
+}

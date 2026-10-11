@@ -783,7 +783,9 @@ const LOG = [
       'The first stopped being a mode and became the engine the later ones were cut from — a new mode now arrives as art and rules somebody authors, not as a feature the client has to grow.',
     ],
     stack: ['C#', 'A* pathfinding', 'Zenject', 'Addressables', 'NUnit', 'Spine'],
-    media: [],
+    media: [
+      { type: 'image', src: 'assets/play-perfect/solitaire-smash.webp', caption: 'Solitaire Smash \u2014 the base game, and the mini-games beside it' },
+    ],
   },
   {
     id: 'pp-replay-oracle',
@@ -808,7 +810,9 @@ const LOG = [
       'Underneath it, a scoring ledger that charges a reversal at the multiplier that paid for the gain and carries that through the snapshot, so the charge survives a resume.',
     ],
     stack: ['C#', 'Remote config', 'Addressables/CDN', 'GitHub Actions', 'NUnit', 'Telemetry'],
-    media: [],
+    media: [
+      { type: 'image', src: 'assets/play-perfect/bingo-screenshot.webp', caption: 'Bingo \u2014 a mode that arrives as data, in the shipped client' },
+    ],
   },
 
   /* ---------- unity/freelance-2024 ---------- */

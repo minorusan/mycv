@@ -446,4 +446,79 @@ document.querySelector('#toolbar-links').innerHTML = PROFILE.links
   .map((l) => `<a href="${esc(l.url)}" target="_blank" rel="noopener">${esc(l.label)}</a>`)
   .join('');
 
-playback();
+/* ---------- printable CV ---------- */
+
+function renderResume() {
+  const r = RESUME;
+  const ul = (items) => `<ul>${items.map((b) => `<li>${esc(b)}</li>`).join('')}</ul>`;
+  const job = (j) => `<article class="cv-job">
+      <h3>${esc(j.title)}</h3>
+      <p class="cv-meta">${esc(j.company)}${j.location ? ' \u00b7 ' + esc(j.location) : ''} \u00b7 ${esc(j.period)}</p>
+      ${ul(j.bullets)}
+      ${j.stack ? `<p class="cv-stack">Technologies: ${esc(j.stack.join(', '))}</p>` : ''}
+    </article>`;
+
+  document.querySelector('#resume').innerHTML = `
+    <h1>${esc(r.name)}</h1>
+    <p class="cv-title">${esc(r.title)}</p>
+    <p class="cv-site"><strong>${esc(r.siteNote)} ${esc(r.site)}</strong></p>
+    <p class="cv-contact">${esc(r.location)} \u00b7 ${esc(r.phone)} \u00b7 ${esc(r.email)} \u00b7 ${r.links
+    .map((l) => esc(l.url))
+    .join(' \u00b7 ')}</p>
+
+    <h2>Summary</h2>
+    ${r.summary.map((t) => `<p>${esc(t)}</p>`).join('')}
+
+    <h2>Experience</h2>
+    ${r.experience.map(job).join('')}
+    ${r.earlier
+      .map(
+        (j) => `<article class="cv-job cv-brief">
+          <h3>${esc(j.title)}</h3>
+          <p class="cv-meta">${esc(j.company)} \u00b7 ${esc(j.period)}</p>
+          <ul><li>${esc(j.line)}</li></ul>
+        </article>`
+      )
+      .join('')}
+
+    <h2>${esc(r.rnd.title)}</h2>
+    <p class="cv-meta">${esc(r.rnd.period)}</p>
+    <p>${esc(r.rnd.intro)}</p>
+    ${ul(r.rnd.bullets)}
+
+    <h2>Skills</h2>
+    ${r.skills.map((g) => `<p class="cv-skills"><strong>${esc(g.group)}:</strong> ${esc(g.items.join(', '))}</p>`).join('')}
+
+    <h2>Education</h2>
+    <p>${esc(r.education.teaching)}</p>
+    ${ul(r.education.courses)}
+    <p>${esc(r.education.note)}</p>
+
+    <h2>Languages</h2>
+    <p>${esc(r.languages.join(' \u00b7 '))}</p>`;
+}
+
+function exportPdf() {
+  renderResume();
+  window.print();
+}
+
+renderResume();
+
+/* ---------- intro overlay ---------- */
+
+function closeIntro(replay) {
+  const el = document.querySelector('#intro');
+  if (!el || el.classList.contains('is-gone')) return;
+  el.classList.add('is-gone');
+  document.body.classList.remove('intro-on');
+  if (replay) playback();
+}
+
+(function intro() {
+  document.body.classList.add('intro-on');
+  for (const sel of ['.pdf-btn', '.section.is-spot']) {
+    const el = document.querySelector(sel);
+    if (el) el.addEventListener('click', () => closeIntro(false));
+  }
+})();
