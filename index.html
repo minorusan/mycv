@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Klim Shchukin — Senior Platform Engineer</title>
+<meta name="description" content="CV of Klim Shchukin, Senior Platform Engineer — read as a git history.">
+<link rel="icon" href="assets/avatar.webp">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="app">
+
+  <header class="toolbar">
+    <span class="repo" id="repo-path"></span>
+    <span class="head-pill">⑂ <span id="head-branch"></span></span>
+    <span class="spacer"></span>
+    <nav class="toolbar-links" id="toolbar-links"></nav>
+  </header>
+
+  <aside class="sidebar">
+    <div class="identity"></div>
+
+    <div class="section">
+      <h2>Branches</h2>
+      <div id="branches"></div>
+    </div>
+
+    <div class="section">
+      <h2>Tags</h2>
+      <div id="tags"></div>
+    </div>
+
+    <div class="section">
+      <h2>Skills</h2>
+      <div class="meters" id="skills"></div>
+    </div>
+
+    <div class="section">
+      <h2>Languages</h2>
+      <div class="meters" id="languages"></div>
+    </div>
+  </aside>
+
+  <main class="log">
+    <div class="log-head">
+      <span></span>
+      <span>Description</span>
+      <span class="c-sha">Commit</span>
+      <span>Date</span>
+    </div>
+    <div class="rows"></div>
+  </main>
+
+  <footer class="statusbar">
+    <span class="ok">● on branch <span id="head-branch-2">unity</span></span>
+    <span id="counts"></span>
+    <span class="spacer"></span>
+    <span class="hint">click a branch or tag to isolate it · click a commit for the full story · esc to close</span>
+  </footer>
+
+</div>
+
+<aside class="detail">
+  <div class="detail-head"></div>
+  <div class="detail-body"></div>
+</aside>
+
+<div class="lightbox">
+  <button class="lb-x" type="button" onclick="closeShot()" aria-label="Close">×</button>
+  <button class="lb-step" data-step="-1" type="button" aria-label="Previous">‹</button>
+  <div class="lb-stage"></div>
+  <button class="lb-step" data-step="1" type="button" aria-label="Next">›</button>
+  <div class="lb-meta"><span class="lb-caption"></span><span class="lb-count"></span></div>
+</div>
+
+<button class="rewind" type="button" onclick="stopScroll()">
+  replaying history <span class="bar"><i></i></span> skip
+</button>
+
+<script src="data.js"></script>
+<script src="app.js"></script>
+<!-- DEV ONLY: asset drop + bin. Delete this line, dev-drop.js and dev-server.py before shipping. -->
+<script src="dev-drop.js"></script>
+</body>
+</html>

@@ -1,0 +1,12 @@
+.DS_Store
+
+# source material I worked from, not part of the site
+/pp/
+/ai/
+
+# dev-only asset-drop server
+dev-server.py
+dev-removed.txt
+
+# source lists I worked from
+courses.txt
