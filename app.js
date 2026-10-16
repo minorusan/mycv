@@ -499,6 +499,7 @@ function renderResume() {
 }
 
 function exportPdf() {
+  closeIntro(false);
   renderResume();
   window.print();
 }

@@ -644,7 +644,7 @@ a:hover { text-decoration: underline; }
 @media print {
   @page { size: A4; margin: 14mm 15mm; }
 
-  #app, .detail, .lightbox, .rewind { display: none !important; }
+  #app, .detail, .lightbox, .rewind, .intro { display: none !important; }
 
   html, body { background: #fff; }
 
